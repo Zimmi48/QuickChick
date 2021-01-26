@@ -402,9 +402,9 @@ let isTyParam = function
   | _ -> false 
 
 let warn_uninstantiated_variables =
-  CWarnings.create ~name:"quickchick-uninstantiated-variables"
-    ~category:"quickchick"
-    ~default:CWarnings.Enabled
+  CWarnings.(create ~name:"quickchick-uninstantiated-variables"
+    ~category:(Other "quickchick")
+    ~default:Enabled)
     (fun allUnknowns ->
       str "After proccessing all constraints, there are still uninstantiated variables: "
       ++ prlist_with_sep (fun _ -> strbrk " , ") str (List.map var_to_string allUnknowns)
